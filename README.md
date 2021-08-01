@@ -1,3 +1,3 @@
 # Steps
-Mini CRM for personal use  
-Slogan: Move forward with the mini CRM "Steps"
+Task manager for personal use 
+Slogan: Move forward with the task manager "Steps"
