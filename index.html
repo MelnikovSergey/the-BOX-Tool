@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="libs/jQuery/jquery.ui.min.css">
 	<link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="libs/jQuery/jquery.ui.min.css" />
 	<link rel="icon" type="image/x-icon" href="images/favicons/favicon.ico">
-	<title>CRM Interface</title>
+	<title>Personal TM</title>
 </head>
 <body>
 	<header class="main-header container clearfix">
@@ -31,8 +31,8 @@
 
 		<section class="sub-menu-section">
 			<ul class="sub-menu">
-				<li class="menu__item menu__item_sub-menu"><a href="#">Всё</a></li>
-				<li class="menu__item menu__item_sub-menu"><a href="#" class="current">За неделю</a></li>
+				<li class="menu__item menu__item_sub-menu"><a href="#" class="current">Всё</a></li>
+				<li class="menu__item menu__item_sub-menu"><a href="#">За неделю</a></li>
 				<li class="menu__item menu__item_sub-menu"><a href="#">За месяц</a></li>
 			</ul>
 		</section>
@@ -49,48 +49,50 @@
 
 	<main class="container clearfix">
 		<section class="section__item">
-			<h2 class="section__item__heading section__item__heading_coral">Индустрия</h2>
+			<h2 class="section__item__heading section__item__heading_coral" id="pending">Pending</h2>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia soluta nam beatae, commodi eligendi necessitatibus.</p>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore at expedita, optio. Nemo quos, ducimus, qui voluptate ratione beatae eveniet tenetur deleniti eum aliquam facere!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero, laborum ducimus praesentium consectetur pariatur commodi suscipit.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla consequatur atque, sunt fuga eaque, reprehenderit rerum!</p>
 		</section>
 
 		<section class="section__item">
-			<h2 class="section__item__heading section__item__heading_green">Технологии</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum accusamus autem ea ratione, doloremque quibusdam error expedita! Accusamus, amet!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni, natus quaerat dolores perspiciatis vero.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis nam aspernatur laboriosam ab voluptas inventore voluptatibus accusamus animi minima, nesciunt reiciendis culpa eaque officia, architecto esse aut dignissimos tempore.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum, labore odit!</p>
+			<h2 class="section__item__heading section__item__heading_green" id="inProgress">In Progress</h2>
 		</section>
 
 		<section class="section__item">
-			<h2 class="section__item__heading section__item__heading_brown">Инструменты</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia soluta nam beatae, commodi eligendi necessitatibus.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore at expedita, optio. Nemo quos, ducimus, qui voluptate ratione beatae eveniet tenetur deleniti eum aliquam facere!</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt libero, laborum ducimus praesentium consectetur pariatur commodi suscipit.</p>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla consequatur atque, sunt fuga eaque, reprehenderit rerum!</p>
+			<h2 class="section__item__heading section__item__heading_brown" id="completed">Completed</h2>
 		</section>
 	</main>
 
 	<section class="container clearfix">
-		<button type="button" class="btn btn-primary">Сохранить</button>	
+		<button type="button" class="btn btn-primary">Добавить задачу</button>	
+	</section>
+
+	<section>
+            <div class="task-list">
+                <h3>Добавить задачу</h3>
+                <form id="todo-form">
+                    <input type="text" placeholder="Title" />
+                    <textarea placeholder="Descrtipion"></textarea>
+                    <input type="text" id="datepicker" placeholder="Due Date (dd/mm/yyyy)" />
+                    <input type="button" class="btn btn-primary" value="Add Task" onclick="todo.add();" />
+                </form>
+
+                <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
+
+                <div id="delete-div">
+                    Drag Here to Delete
+                </div>
+            </div>
 	</section>
 
 	<footer class="container"></script>
 		<span class="copyright">
-			<span class="responsive-design-hide">Copyright</span>© 2020 Мельников Сергей<span class="hide">.</span>
+			<span class="responsive-design-hide">Copyright</span>© 2020-2021 Мельников Сергей<span class="hide">.</span>
 			<span class="copyright-declaration">All Rights Reserved.</span>
 		</span>		
 	</footer>
-	<script src="libs/jQuery/jquery-3.1.1.min.js"></script>
+	<script src="libs/jQuery/jquery.min.js"></script> 
         <script src="libs/jQuery/jquery.ui.min.js"></script>
-	<script src="app/app.js"></script>
-	<script>
-        	$("#datepicker").datepicker();
-        	$("#datepicker").datepicker("option", "dateFormat", "dd/mm/yy");
-                $(".app-steps").draggable();
-                app.init();
-       	</script>
+	<script src="app/app.js"></script> 	
 </body>
 </html>
