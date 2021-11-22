@@ -1,3 +1,9 @@
-# Steps
-Task manager for personal use  
-Slogan: Move forward with the task manager "Steps"
+# the BOX Tool (task manager) 
+
+Делаю удобный для себя инструмент помогающий  организовать  разные дела и задачи в список.   
+
++ блоки с задачами перемещаются  по категориям простым перетаскиванием
++ задачи можно редактировать и удалять разными способами
++ приложение работает с localStorage  
+
+![screenshot](doc/images/screenshot.png)

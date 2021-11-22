@@ -1,9 +1,9 @@
-var todo = todo || {},
+var app = app || {},
     data = JSON.parse(localStorage.getItem("todoData"));
 
 data = data || {};
 
-(function(todo, data, $) {
+(function(app, data, $) {
 
     var defaults = {
             todoTask: "todo-task",
@@ -13,14 +13,15 @@ data = data || {};
             taskId: "task-",
             formId: "todo-form",
             dataAttribute: "data",
-            deleteDiv: "delete-div"
+            deleteSection: "delete-section",
+	    addButtons: "add-buttons"
         }, codes = {
             "1" : "#pending",
             "2" : "#inProgress",
             "3" : "#completed"
         };
 
-    todo.init = function (options) {
+    app.init = function (options) {
 
         options = options || {};
         options = $.extend({}, defaults, options);
@@ -28,22 +29,6 @@ data = data || {};
         $.each(data, function (index, params) {
             generateElement(params);
         });
-
-        /*generateElement({
-            id: "123",
-            code: "1",
-            title: "asd",
-            date: "22/12/2013",
-            description: "Blah Blah"
-        });*/
-
-        /*removeElement({
-            id: "123",
-            code: "1",
-            title: "asd",
-            date: "22/12/2013",
-            description: "Blah Blah"
-        });*/
 
         // Adding drop function to each category of task
         $.each(codes, function (index, value) {
@@ -68,13 +53,13 @@ data = data || {};
                             localStorage.setItem("todoData", JSON.stringify(data));
 
                             // Hiding Delete Area
-                            $("#" + defaults.deleteDiv).hide();
+                            $("#" + defaults.deleteSection).hide();
                     }
             });
         });
 
         // Adding drop function to delete div
-        $("#" + options.deleteDiv).droppable({
+        $("#" + options.deleteSection).droppable({
             drop: function(event, ui) {
                 var element = ui.helper,
                     css_id = element.attr("id"),
@@ -89,7 +74,7 @@ data = data || {};
                 localStorage.setItem("todoData", JSON.stringify(data));
 
                 // Hiding Delete Area
-                $("#" + defaults.deleteDiv).hide();
+                $("#" + defaults.deleteSection).hide();
             }
         })
 
@@ -105,32 +90,54 @@ data = data || {};
         }
 
         wrapper = $("<div />", {
-            "class" : defaults.todoTask,
-            "id" : defaults.taskId + params.id,
-            "data" : params.id
+            "class": defaults.todoTask,
+            "id": defaults.taskId + params.id,
+            "data": params.id
         }).appendTo(parent);
 
         $("<div />", {
-            "class" : defaults.todoHeader,
+            "class": defaults.todoHeader,
             "text": params.title
         }).appendTo(wrapper);
 
         $("<div />", {
-            "class" : defaults.todoDate,
+            "class": defaults.todoDate,
             "text": params.date
         }).appendTo(wrapper);
 
         $("<div />", {
-            "class" : defaults.todoDescription,
+            "class": defaults.todoDescription,
             "text": params.description
         }).appendTo(wrapper);
 
+        $("<button />", {
+            "class": 'edit-btn',
+	       "onclick": 'app.edit()'
+	}).appendTo(wrapper);
+
+	$("<span />", {
+            "class": 'edit-task-icon',
+            "title": 'Edit task',
+	}).appendTo('.edit-btn'); 
+
+        $("<button />", {
+            "class": 'remove-btn',
+	       "onclick": 'app.remove()'
+	}).appendTo(wrapper);
+
+	$("<span />", {
+            "class": 'delete-task-icon',
+            "title": 'Delete task',
+	}).appendTo('.remove-btn'); 
+
         wrapper.draggable({
             start: function() {
-                $("#" + defaults.deleteDiv).show();
+		$("#" + defaults.addButtons).hide();
+                $("#" + defaults.deleteSection).show();
             },
             stop: function() {
-                $("#" + defaults.deleteDiv).hide();
+		$("#" + defaults.addButtons).show();
+                $("#" + defaults.deleteSection).hide();
             }
         });
 
@@ -139,14 +146,21 @@ data = data || {};
     // Remove task
     var removeElement = function (params) {
         $("#" + defaults.taskId + params.id).remove();
+	$("#" + defaults.addButtons).show();
     };
 
-    todo.add = function() {
+    // Open modal
+    var openModal = function (params) {
+	$("#task-modal").show();
+	alert('Test');
+    };
+
+    app.add = function() {
         var inputs = $("#" + defaults.formId + " :input"),
-            errorMessage = "Title can not be empty",
+            errorMessage = "Заголовок не может быть пустым",
             id, title, description, date, tempData;
 
-        if (inputs.length !== 4) {
+        if (inputs.length !== 3) {
             return;
         }
 
@@ -184,7 +198,7 @@ data = data || {};
 
     var generateDialog = function (message) {
         var responseId = "response-dialog",
-            title = "Messaage",
+            title = "Сообщение",
             responseDialog = $("#" + responseId),
             buttonOptions;
 
@@ -198,7 +212,7 @@ data = data || {};
         responseDialog.html(message);
 
         buttonOptions = {
-            "Ok" : function () {
+            "Ок" : function () {
                 responseDialog.dialog("close");
             }
         };
@@ -212,10 +226,18 @@ data = data || {};
         });
     };
 
-    todo.clear = function () {
+    app.clear = function () {
         data = {};
         localStorage.setItem("todoData", JSON.stringify(data));
         $("." + defaults.todoTask).remove();
     };
 
-})(todo, data, jQuery);
+    app.edit = function () {
+	alert('Edit!');
+    };
+
+    app.remove = function () {
+	alert('Delete!');
+    };
+
+})(app, data, jQuery);
