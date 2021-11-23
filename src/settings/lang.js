@@ -1,4 +1,44 @@
 const langArr = {
+	"tasks" :  {
+		"ru" : "Задачи",
+		"en" : "Tasks"
+	},
+
+	"solutions" :  {
+		"ru" : "Решения",
+		"en" : "Solutions"
+	},
+
+	"results" :  {
+		"ru" : "Результаты",
+		"en" : "Results"
+	},
+
+	"settings" :  {
+		"ru" : "Настройки",
+		"en" : "Settings"
+	},
+
+	"about" :  {
+		"ru" : "О программе",
+		"en" : "About app"
+	},
+
+	"all" :  {
+		"ru" : "Всё",
+		"en" : "All"
+	},
+
+	"week" :  {
+		"ru" : "За неделю",
+		"en" : "Week"
+	},
+
+	"month" :  {
+		"ru" : "За месяц",
+		"en" : "Month"
+	},	
+
 	"search" :  {
 		"ru" : "Поиск",
 		"en" : "Search"
@@ -67,5 +107,11 @@ const langArr = {
 	"screenMessage" :  {
 		"ru" : "Пожалуйста, используйте это приложение на большом экране.",
 		"en" : "Please view this app on a larger screen."
-	}
+	},
+
+	"copyrightMessage" :  {
+		"ru" : "Менеджер задач для эффективной работы фрилансера.",
+		"en" : "Task manager tool for the effective work of a freelancer."
+	}	
+
 }
