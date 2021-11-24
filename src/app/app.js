@@ -14,7 +14,8 @@ data = data || {};
             formId: "todo-form",
             dataAttribute: "data",
             deleteSection: "delete-section",
-	    addButtons: "add-buttons"
+            editButton: "edit-btn",
+            removeButton: "remove-btn"
         }, codes = {
             "1" : "#pending",
             "2" : "#inProgress",
@@ -54,7 +55,7 @@ data = data || {};
 
                             // Hiding Delete Area
                             $("#" + defaults.deleteSection).hide();
-                    }
+                }
             });
         });
 
@@ -77,7 +78,6 @@ data = data || {};
                 $("#" + defaults.deleteSection).hide();
             }
         })
-
     };
 
     // Add Task
@@ -111,24 +111,14 @@ data = data || {};
         }).appendTo(wrapper);
 
         $("<button />", {
-            "class": 'edit-btn',
-	       "onclick": 'app.edit()'
-	}).appendTo(wrapper);
-
-	$("<span />", {
-            "class": 'edit-task-icon',
-            "title": 'Edit task',
-	}).appendTo('.edit-btn'); 
+            "class": defaults.editButton,
+            "onclick": 'app.edit()'
+    	}).appendTo(wrapper);
 
         $("<button />", {
-            "class": 'remove-btn',
-	       "onclick": 'app.remove()'
-	}).appendTo(wrapper);
-
-	$("<span />", {
-            "class": 'delete-task-icon',
-            "title": 'Delete task',
-	}).appendTo('.remove-btn'); 
+            "class": defaults.removeButton,
+            "onclick": 'app.remove()'
+        }).appendTo(wrapper);
 
         wrapper.draggable({
             start: function() {
@@ -146,13 +136,13 @@ data = data || {};
     // Remove task
     var removeElement = function (params) {
         $("#" + defaults.taskId + params.id).remove();
-	$("#" + defaults.addButtons).show();
+        $("#" + defaults.addButtons).show();
     };
 
     // Open modal
     var openModal = function (params) {
-	$("#task-modal").show();
-	alert('Test');
+	   $("#task-modal").show();
+	   alert('Test');
     };
 
     app.add = function() {
@@ -233,11 +223,11 @@ data = data || {};
     };
 
     app.edit = function () {
-	alert('Edit!');
+	   alert('Edit!');
     };
 
-    app.remove = function () {
-	alert('Delete!');
+    app.remove = function (event) {
+	   alert('Delete!');
     };
 
 })(app, data, jQuery);
