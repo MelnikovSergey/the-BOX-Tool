@@ -1,4 +1,4 @@
-var app = app || {},
+﻿var app = app || {},
     data = JSON.parse(localStorage.getItem("todoData"));
 
 data = data || {};
@@ -112,21 +112,21 @@ data = data || {};
 
         $("<button />", {
             "class": defaults.editButton,
-            "onclick": 'app.edit()'
+            "onclick": 'app.edit(this)'
     	}).appendTo(wrapper);
 
         $("<button />", {
             "class": defaults.removeButton,
-            "onclick": 'app.remove()'
+            "onclick": 'app.remove(this)'
         }).appendTo(wrapper);
 
         wrapper.draggable({
             start: function() {
-		$("#" + defaults.addButtons).hide();
+                $("#" + defaults.addButtons).hide();
                 $("#" + defaults.deleteSection).show();
             },
             stop: function() {
-		$("#" + defaults.addButtons).show();
+                $("#" + defaults.addButtons).show();
                 $("#" + defaults.deleteSection).hide();
             }
         });
@@ -142,12 +142,12 @@ data = data || {};
     // Open modal
     var openModal = function (params) {
 	   $("#task-modal").show();
-	   alert('Test');
+	   alert('Test modal!');
     };
 
     app.add = function() {
         var inputs = $("#" + defaults.formId + " :input"),
-            errorMessage = "Заголовок не может быть пустым",
+            errorMessage = "Заголовок не должен быть пустым",
             id, title, description, date, tempData;
 
         if (inputs.length !== 3) {
@@ -222,12 +222,25 @@ data = data || {};
         $("." + defaults.todoTask).remove();
     };
 
-    app.edit = function () {
-	   alert('Edit!');
+    // Bullshit code!!! Urgently fix it!!!
+    app.edit = function (element) {
+        var editElementById = element.parentNode.getAttribute('id');
+
+        alert("Для того чтобы отредактировать задачу, кликните правой кнопкой мыши по нужному абзацу.");
+
+        // Edit an element by id
+        var updateData = $("#" + editElementById + " div").attr('contenteditable', 'true');
     };
 
-    app.remove = function (event) {
-	   alert('Delete!');
+    app.remove = function (element) {
+        var deleteElementById = element.parentNode.getAttribute('id');
+
+        // Delete an element by id
+        $("#" + deleteElementById).remove();
+
+        // Updating local storage
+        delete data[parseInt(deleteElementById.match(/\d+/))];
+        localStorage.setItem("todoData", JSON.stringify(data));
     };
 
 })(app, data, jQuery);

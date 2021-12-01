@@ -1,7 +1,8 @@
 ﻿(function(id) {
    'use strict';
 
-    const modalId;
+    var modalId;
+
     const clickId=document.querySelectorAll(".dialog-link");
     const closeLinks=document.querySelectorAll(".close-link"); 
     
