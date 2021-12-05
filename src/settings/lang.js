@@ -79,12 +79,22 @@ const langArr = {
 		"en" : "Clear Data"
 	},
 
+	"addTasks" :  {
+		"ru" : "Добавить задачу",
+		"en" : "&nbsp;Add Tasks&nbsp;"
+	},	
+
+	"newProject" :  {
+		"ru" : "Новый проект",
+		"en" : "New Project"
+	},
+
 	"pending" :  {
 		"ru" : "Выполнить",
 		"en" : "Pending"
 	},	
 
-	"close" :  {
+	"progress" :  {
 		"ru" : "В процессе",
 		"en" : "In Progress"
 	},
@@ -92,6 +102,26 @@ const langArr = {
 	"completed" :  {
 		"ru" : "Завершено",
 		"en" : "Completed"
+	},
+
+	"language" :  {
+		"ru" : "Русский",
+		"en" : "Английский"
+	},
+
+	"selectLanguage" :  {
+		"ru" : "Выбор языка",
+		"en" : "Select language"
+	},
+
+	"addNewTask" :  {
+		"ru" : "Добавить задачу",
+		"en" : "Add a new task"
+	},
+
+	"createNewProject" :  {
+		"ru" : "Создать новый проект",
+		"en" : "Create a new project"
 	},
 
 	"emptyMessage" :  {
@@ -112,6 +142,41 @@ const langArr = {
 	"copyrightMessage" :  {
 		"ru" : "Менеджер задач для эффективной работы фрилансера.",
 		"en" : "Task manager tool for the effective work of a freelancer."
+	},
+
+	"completeTaskMessage" :  {
+		"ru" : "Задача которую нужно выполнить",
+		"en" : "The task to be completed"
+	},
+
+	"taskInProgressMessage" :  {
+		"ru" : "Задача в процессе выполнения",
+		"en" : "Task in progress"
+	},
+
+	"completedTaskMessage" :  {
+		"ru" : "Выполненная задача",
+		"en" : "Completed task"
+	},
+
+	"functionalityTaskMessage" :  {
+		"ru" : "Данный функционал активно разрабатывается и скоро будет доступен. Для того чтобы начать работу используйте интерфейс «Добавить задачу»",
+		"en" : "This functionality is being actively developed and will be available soon. To get started, use the \"Add Task\" interface."
+	},
+
+	"nextUpdateMessage" :  {
+		"ru" : "Следующее обновление позволит создавать новые проекты и привязывать к ним определенные задачи.",
+		"en" : "The next update will allow you to create new projects and link specific tasks to them."
+	},
+
+	"thanksMessage" :  {
+		"ru" : "Спасибо за понимание.",
+		"en" : "Thanks for understanding."
+	},
+
+	"temporaryMessage" :  {
+		"ru" : "После создания роутинга, отрефакторить и перенести в раздел Настройки.",
+		"en" : "After creating the route, refactor the code and move it to the Settings section."
 	}	
 
 }
