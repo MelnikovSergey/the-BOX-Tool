@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="libs/jquery.ui.min.css" />
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/styles.css">
+	
+	<!-- Favicon -->   
+	<link rel="shortcut icon" type="image/png" href="img/favicon.png">
+	
+	<title>Задачи</title>
+</head>
+<body>
+	<header class="main-header container clearfix">
+
+		<div class="logo">
+			<img src="img/logo.svg" alt="Logo">	
+		</div>
+
+		<div class="tm__section">
+			<a href="https://polytechnix.ru/" class="tm" title="Made in polytechnix">polytechnix</a>	
+		</div>		
+
+		<nav>
+			<ul class="menu">
+				<li class="menu__item"><a href="#" class="current lng-tasks">Задачи</a></li>
+				<li class="menu__item"><a href="#" class="lng-solutions">Решения</a></li>
+				<li class="menu__item"><a href="#" class="lng-results">Результаты</a></li>
+				<li class="menu__item"><a href="#" class="lng-settings">Настройки</a></li>				
+				<li class="menu__item"><a href="#" class="lng-about">О программе</a></li>
+			</ul>
+		</nav>
+
+		<section class="sub-menu-section">
+			<ul class="sub-menu">
+				<li class="menu__item menu__item_sub-menu"><a href="#" class="current lng-all">Всё</a></li>
+				<li class="menu__item menu__item_sub-menu"><a href="#" class="lng-week">За неделю</a></li>
+				<li class="menu__item menu__item_sub-menu"><a href="#" class="lng-month">За месяц</a></li>
+			</ul>
+		</section>
+
+		<nav>
+			<form role="search" method="get" class="search-form" action="/">
+			    	<label>
+			    		<input type="search" class="search-field" placeholder="Поиск" name="search" title="Поиск" />
+			    	</label>
+			</form>				
+		</nav>
+
+	</header>
+
+	<section class="container container-padding-clear message-section">
+		<p class="message lng-screenMessage">Пожалуйста, используйте это приложение на большом экране.</p>
+	</section>
+	
+	<main class="container clearfix">
+		<section class="section__item" id="pending">
+			<h2 class="section__item__heading section__item__heading_brown lng-pending">Выполнить</h2>
+			<p class="lng-completeTaskMessage">Задача которую нужно выполнить</p>
+		</section>
+
+		<section class="section__item" id="inProgress">
+			<h2 class="section__item__heading section__item__heading_yellow lng-progress">В процессе</h2>
+			<p class="lng-taskInProgressMessage">Задача в процессе выполнения</p>
+		</section>
+
+		<section class="section__item" id="completed">
+			<h2 class="section__item__heading section__item__heading_green lng-completed">Завершено</h2>
+			<p class="lng-completedTaskMessage">Выполненная задача</p>
+		</section>
+	</main>
+
+	<section class="container container-padding-clear clearfix" id="add-buttons">
+		<a href="#new-project-link" class="btn hyper-btn btn-primary dialog-link lng-newProject">&nbsp;Новый проект&nbsp;</a>
+		<a href="#add-task-link" class="btn hyper-btn btn-primary dialog-link lng-addTasks">Добавить задачу</a>
+	</section>
+
+	<section class="container container-padding-clear">
+	        <div class="delete-section lng-deleteMessage" id="delete-section">
+	            Перетащите блок сюда, чтобы его удалить
+	        </div>	
+	</section>
+
+	<!-- Create new project (Dialog window) -->
+	<div class="task-project-modal" aria-hidden="true" id="new-project-link">
+	  <article class="task-project-dialog-modal">
+	    <div class="task-project-overflow-wrapper"> 
+	      <header class="task-project-header-modal">
+	      	<h2 class="task-project-title lng-createNewProject">Создать новый проект</h2>
+	      	<span class="close">
+	      	  <a href="#" class="but close-link" aria-hidden="true" title="Закрыть">CLOSE</a>
+	      	</span>
+	      </header>
+	      <div class="task-project-content-modal"> 
+	        <p class="lng-functionalityTaskMessage">Данный функционал активно разрабатывается и скоро будет доступен. Для того чтобы начать работу используйте интерфейс «Добавить задачу»</p>
+	        <p class="lng-nextUpdateMessage">Следующее обновление позволит создавать новые проекты и привязывать к ним определенные задачи.</p>
+	        <p class="lng-thanksMessage">Спасибо за понимание.</p>
+	      </div>   
+	      <footer class="task-project-footer-modal">
+	      	<span><a href="#" class="but close-link lng-close" aria-hidden="true">Закрыть</a></span>
+	      </footer>
+	    </div>  
+	  </article>
+	</div>
+
+	<!-- Add new task (Dialog window) -->
+	<div class="task-project-modal" aria-hidden="true" id="add-task-link">
+	  <article class="task-project-dialog-modal">
+	    <div class="task-project-overflow-wrapper">
+	      <header class="task-project-header-modal">
+	      	<h2 class="task-project-title lng-addNewTask">Добавить задачу</h2>
+	      	<span class="close">
+	      	  <a href="#" class="but close-link" aria-hidden="true" title="Закрыть">CLOSE</a>
+	      	</span>
+	      </header>
+	      <div class="task-dialog">
+                 <form id="todo-form">
+                     <input type="text" class="task-title" placeholder="Заголовок" />
+                     <textarea class="task-description" placeholder="Описание задачи"></textarea>
+                     <input type="text" id="datepicker" class="task-date" placeholder="Срок выполнения (дд. мм. год)" />
+                 </form>
+                 <button type="button" class="btn btn-primary lng-add" onclick="app.add();">Добавить</button>
+		 <button type="button" class="btn btn-primary lng-clear" onclick="app.clear();">Очистить</button>
+	      </div>   
+	      <footer class="task-project-footer-modal">
+	      	<span><a href="#" class="but close-link lng-close" aria-hidden="true">Закрыть</a></span>
+	      </footer>
+	    </div>  
+	  </article>
+	</div>
+
+	<section class="container container-padding-clear clearfix">
+		<h2 class="settings"><span class="lng-selectLanguage">Выбор языка</span>:</h2>
+		<span class="lng-temporaryMessage" style="display: block; margin-bottom: 2px">После создания роутинга, отрефакторить и перенести в раздел Настройки.</span><br>
+	
+		<div class="select-language">
+			<select class="change-lang">
+				<option value="ru">Русский</option>
+				<option value="en">Английский</option>
+			</select>
+			<div class="select__arrow"></div>
+		</div>
+	</section>
+
+	<footer class="main-footer container container-padding-clear">
+		<span class="copyright">
+			<span class="copyright-declaration">© 2012 - <script>document.write(new Date().getFullYear());</script>
+				<span class="lng-copyrightMessage">Менеджер задач для эффективной работы фрилансера.</span>
+			</span>
+		</span>		
+	</footer>
+
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/jquery.ui.min.js"></script>
+	<script src="app/dialog.js"></script>	
+	<script src="app/app.js"></script> 
+
+	<script src="settings/lang.js"></script>	
+	<script src="app/helpers/translate.js"></script> 
+
+	<script type="text/javascript">
+		$( "#datepicker" ).datepicker();
+		$( "#datepicker" ).datepicker("option", "dateFormat", "dd.mm.yy");
+		
+		$(".todo-task").draggable();
+		app.init();
+	</script>	
+</body>
+</html>
